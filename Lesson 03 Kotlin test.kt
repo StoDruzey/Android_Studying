@@ -7,6 +7,17 @@ fun main() {
         .filterBy { it > 3 } //этот метод возвращает list
         .dropLast(1)
         .map { it * 2 } //смотреть сигнатуру метода
+
+    listOf(1,2,3,4,5,6)
+//        .asSequence()
+        .filter {
+            println("Filter: $it")
+            it > 3
+        }
+        .find {
+            println("Find: $it")
+            it == 5
+        }
 }
 
 fun String.numCap() = this.count { it.isUpperCase() }
