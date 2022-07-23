@@ -31,7 +31,6 @@ open class Test(var value: Int) {
         get() = value.toDouble()
         set(lue) {
             this.value = lue.toInt()
-
         }
 }
 

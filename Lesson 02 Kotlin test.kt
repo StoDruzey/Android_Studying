@@ -12,7 +12,6 @@ fun main() {
             break
         }
     }
-
 }
 
 fun show(shape: Shape) : String {
