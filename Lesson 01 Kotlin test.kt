@@ -1,7 +1,6 @@
 package com.example.androidstudying
 
 fun main() {
-//    test()
     check("Hello world", 'l')
     val set = mutableSetOf(1, 2, 3, 3)
     println(set)
