@@ -167,6 +167,6 @@ class Teacher private constructor(val name: String) {
     }
 
 }
-data class User1 private constructor(val name: String, age: Int) {
+data class User1 private constructor(val name: String, age: Int) { //private подчеркнуто, потому что для data class обычно не пишут
     constructor(name: String) : this(name, 0)
 }
