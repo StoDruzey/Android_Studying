@@ -22,12 +22,16 @@ fun main() {
     val rectangle = Rectangle(3.0, 4.0)
     val square = Square(5.0)
     val triangle = Triangle(6.0, 7.0)
+    val circle = Circle(3.0)
     rectangle.figureType()
-    println(rectangle.squareFig())
+    println(rectangle.area)
     square.figureType()
-    println(square.squareFig())
+    println(square.area)
     triangle.figureType()
-    println(triangle.squareFig())
+    println(triangle.area)
+    circle.figureType()
+    println(circle.area)
+
 }
 
 fun String.numCap() = this.count { it.isUpperCase() }
@@ -58,24 +62,35 @@ fun List<Int>.filterByLambda(lam: (Int) -> Boolean): List<Int> {
 }
 
 interface Squarable {
-    fun squareFig(): Double
+//    fun squareFig(): Double
+    val area: Double
 }
 abstract class Figure() : Squarable
 
 class Rectangle(val x: Double, val y: Double) : Figure() {
-    override fun squareFig(): Double {
-        return x * y
-    }
+//    override fun squareFig(): Double {
+//        return x * y
+//    }
+    override val area: Double
+        get() = x * y
 }
 class Square(val x: Double) : Figure() {
-    override fun squareFig(): Double {
-        return x * x
-    }
+    //    override fun squareFig(): Double {
+//        return x * x
+//    }
+    override val area: Double
+        get() = x * x
 }
 class Triangle(val x: Double, val y: Double) : Figure() {
-    override fun squareFig(): Double {
-        return (x * y) / 2
-    }
+//    override fun squareFig(): Double {
+//        return (x * y) / 2
+//    }
+    override val area: Double
+        get() = x * y
+}
+class Circle(val r: Double) : Figure() {
+    override val area: Double
+        get() = r * r * 3.1415
 }
 
 fun Figure.figureType() {
