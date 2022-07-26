@@ -37,6 +37,8 @@ fun main() {
 
     val user = User1("name")
     user.copy(age = 11)
+    val teacher = Teacher.getInstance("jhgfjf")
+    Teacher.Courses(listOf("kjjgf", "kjhfcf"))
 
 }
 
@@ -151,6 +153,18 @@ fun check(user: User) {
 }
 
 class Teacher private constructor(val name: String) {
+    constructor() : this("")
+    data class Courses(val list: List<String>)
+    inner class Test { // inner класс получает доступ ко всем полям внешнего класса
+        fun foo() {
+            name
+        }
+    }
+    companion object {
+        fun getInstance(name: String): Teacher {
+            return Teacher(name)
+        }
+    }
 
 }
 data class User1 private constructor(val name: String, age: Int) {
