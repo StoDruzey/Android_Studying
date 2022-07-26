@@ -35,6 +35,9 @@ fun main() {
     println(circle.area)
     println(Rectangle(1.0,2.0) == Rectangle(1.0,2.0))
 
+    val user = User1("name")
+    user.copy(age = 11)
+
 }
 
 fun String.numCap() = this.count { it.isUpperCase() }
@@ -145,4 +148,11 @@ fun check(user: User) {
         is User.Teacher -> user.checkHomework()
         else -> TODO()
     }
+}
+
+class Teacher private constructor(val name: String) {
+
+}
+data class User1 private constructor(val name: String, age: Int) {
+    constructor(name: String) : this(name, 0)
 }
