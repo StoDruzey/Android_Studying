@@ -106,3 +106,41 @@ fun Figure.figureType() {
     }
 }
 
+data class UserOld(val name: String, val surname: String, val age: Int, val userType: UserType) {
+
+}
+enum class UserType {
+    STUDENT, TEACHER
+}
+sealed class User {
+    abstract val name: String
+    abstract val surname: String
+    abstract val age: Int
+
+    val isStudent: Boolean
+        get() = this is Student
+    fun isTeacher(): Boolean {
+        return !isStudent
+    }
+
+    data class Student(
+        override val name: String,
+        override val surname: String,
+        override val age: Int,
+        val grade: List<Int>) : User() {
+
+    }
+    data class Teacher(
+        override val name: String,
+        override val surname: String,
+        override val age: Int,
+        val articles: List<String>) : User()
+}
+
+fun check(user: User) {
+    when (user) {
+        is User.Student -> TODO()
+        is User.Teacher -> TODO()
+        else -> TODO()
+    }
+}
