@@ -128,19 +128,21 @@ sealed class User {
         override val surname: String,
         override val age: Int,
         val grade: List<Int>) : User() {
-
+            fun goToCourse() {}
     }
     data class Teacher(
         override val name: String,
         override val surname: String,
         override val age: Int,
-        val articles: List<String>) : User()
+        val articles: List<String>) : User() {
+            fun checkHomework() {}
+        }
 }
 
 fun check(user: User) {
     when (user) {
-        is User.Student -> TODO()
-        is User.Teacher -> TODO()
+        is User.Student -> user.goToCourse()
+        is User.Teacher -> user.checkHomework()
         else -> TODO()
     }
 }
