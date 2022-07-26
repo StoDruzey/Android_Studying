@@ -1,3 +1,5 @@
+import kotlin.random.Random
+
 fun main() {
     val num = "AaakbKJJKJHjh".numCap()
     println(num)
@@ -31,6 +33,7 @@ fun main() {
     println(triangle.area)
     circle.figureType()
     println(circle.area)
+    println(Rectangle(1.0,2.0) == Rectangle(1.0,2.0))
 
 }
 
@@ -67,28 +70,29 @@ interface Squarable {
 }
 abstract class Figure() : Squarable
 
-class Rectangle(val x: Double, val y: Double) : Figure() {
+data class Rectangle(private val x: Double, private val y: Double) : Figure() {
 //    override fun squareFig(): Double {
 //        return x * y
 //    }
+    val value = Random.nextInt()
     override val area: Double
         get() = x * y
 }
-class Square(val x: Double) : Figure() {
+data class Square(private val x: Double) : Figure() {
     //    override fun squareFig(): Double {
 //        return x * x
 //    }
     override val area: Double
         get() = x * x
 }
-class Triangle(val x: Double, val y: Double) : Figure() {
+data class Triangle(private val x: Double, private val y: Double) : Figure() {
 //    override fun squareFig(): Double {
 //        return (x * y) / 2
 //    }
     override val area: Double
         get() = x * y
 }
-class Circle(val r: Double) : Figure() {
+data class Circle(private val r: Double) : Figure() {
     override val area: Double
         get() = r * r * 3.1415
 }
