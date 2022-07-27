@@ -49,6 +49,13 @@ fun main() {
     val test = Test()
     test(5)
 
+    mapOf<Int, String>(
+        1 to "1",
+        2.to("2") //to-инфиксная функция, которую можно вызывать без точки и скобок
+    )
+    for (i in 0 until 100 step 2) {}//until и step тоже инфиксные функции. until создает range 0..100
+    for (i in 0..100) {}
+    for (i in listOf(0,2,4,6,8,10))//это то же самое
 
 }
 
@@ -186,7 +193,7 @@ data class Wrapper(val i: Int) {
         return copy(i = i + 1)
     }
 }
-fun test(action: () -> Unit) {
+inline fun test(action: () -> Unit) {
     action()
 }
 class Test {
