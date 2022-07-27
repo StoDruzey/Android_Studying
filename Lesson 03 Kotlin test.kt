@@ -46,6 +46,10 @@ fun main() {
     var wrapper = Wrapper(3)
     wrapper++ //ошибка, тк не определен инкремент для этого класса
 
+    val test = Test()
+    test(5)
+
+
 }
 
 fun String.numCap() = this.count { it.isUpperCase() }
@@ -180,5 +184,13 @@ data class User1 private constructor(val name: String, val age: Int) { //private
 data class Wrapper(val i: Int) {
     operator fun inc(): Wrapper {
         return copy(i = i + 1)
+    }
+}
+fun test(action: () -> Unit) {
+    action()
+}
+class Test {
+    operator fun invoke(value: Int) {
+
     }
 }
