@@ -1,4 +1,5 @@
 import kotlin.random.Random
+import kotlin.reflect.KProperty
 
 fun main() {
     val num = "AaakbKJJKJHjh".numCap()
@@ -199,5 +200,17 @@ inline fun test(action: () -> Unit) {
 class Test {
     operator fun invoke(value: Int) {
 
+    }
+}
+class Test1(val value1: Int, val value2: Int) {
+    private val result: Int = value1 + value2 //это можно написать так: (ниже)
+    private val result1: Int
+        get() = value1 + value2 //это можно написать так: (ниже)
+    private val result2: Int by lazy { value1 + value2 } //это называется делегат. Переменная проинициализируется в момент обращения к ней
+    private val result3: Int by MyDelegate()
+}
+class MyDelegate(private var i: Int = 0) {
+    operator fun getValue(thisRef: Any, property: KProperty<*>): Int {
+        return i
     }
 }
