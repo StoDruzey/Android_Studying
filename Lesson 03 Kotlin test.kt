@@ -40,6 +40,12 @@ fun main() {
     val teacher = Teacher.getInstance("jhgfjf")
     Teacher.Courses(listOf("kjjgf", "kjhfcf"))
 
+    val list1 = listOf(1,2)
+    val list2 = listOf(3,4)
+    val newList = list1 + list2
+    var wrapper = Wrapper(3)
+    wrapper++ //ошибка, тк не определен инкремент для этого класса
+
 }
 
 fun String.numCap() = this.count { it.isUpperCase() }
@@ -167,6 +173,12 @@ class Teacher private constructor(val name: String) {
     }
 
 }
-data class User1 private constructor(val name: String, age: Int) { //private подчеркнуто, потому что для data class обычно не пишут
+data class User1 private constructor(val name: String, val age: Int) { //private подчеркнуто, потому что для data class обычно не пишут
     constructor(name: String) : this(name, 0)
+}
+
+data class Wrapper(val i: Int) {
+    operator fun inc(): Wrapper {
+        return copy(i = i + 1)
+    }
 }
