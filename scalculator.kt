@@ -19,35 +19,32 @@ fun getOperandsFromString(string: String): Expression {
     var operand1: String = ""
     var operand2: String = ""
     var action: String = ""
+    val operands = mutableListOf<String>()
     if (string.isNotBlank()) {
-//        string.
-//        string.trim().forEach {
-//            if (it == '-') {
-//                operand1 += it
-//            }
+        val regex = Regex("""-?\d+(\.\d+)?""")
+        regex.findAll(string).forEach {
+//            print(it.value)
+            operands.add(it.value)
+        }
+        println(operands)
+
+//        var (operand1, action, operand2) = string.split(" ")
 //
-//
-//
-//
-//                .isDigit()))
+//        if (action in "+-*/") {
+//            expression.action = action
 //        }
-        var (operand1, action, operand2) = string.split(" ")
-
-        if (action in "+-*/") {
-            expression.action = action
-        }
-
-        if (operand1.contains('.')) {
-            expression.x = operand1.toDouble()
-        } else {
-            expression.x = operand1.toInt()
-        }
-
-        if (operand2.contains('.')) {
-            expression.y = operand2.toDouble()
-        } else {
-            expression.y = operand2.toInt()
-        }
+//
+//        if (operand1.contains('.')) {
+//            expression.x = operand1.toDouble()
+//        } else {
+//            expression.x = operand1.toInt()
+//        }
+//
+//        if (operand2.contains('.')) {
+//            expression.y = operand2.toDouble()
+//        } else {
+//            expression.y = operand2.toInt()
+//        }
     }
     return expression
 }
