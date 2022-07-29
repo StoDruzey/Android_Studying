@@ -19,6 +19,13 @@ fun main() {
     val user = User("first", "last", 20)
     user.firstName = "new name"
     println(user.fullName)
+
+    var r1 = Regex("[a-z]+")
+    println(r1.matches("abcdef"))
+    var r2 = Regex("[-]?[0-9]+(.[0-9]+)?")
+    r2.findAll("2.2+3.0 5-2 -1.1+7.2").forEach { println(it.value) }
+    var r3 = Regex("\\D+")
+    "2.2+3.0 5-2 -1.1+7.2".split(r3).forEach { println(it) }
 }
 class User(var firstName: String, var lastName: String, val age: Int) {
     val fullName

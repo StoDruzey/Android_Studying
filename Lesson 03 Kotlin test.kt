@@ -56,7 +56,7 @@ fun main() {
     )
     for (i in 0 until 100 step 2) {}//until и step тоже инфиксные функции. until создает range 0..100
     for (i in 0..100) {}
-    for (i in listOf(0,2,4,6,8,10))//это то же самое
+    for (i in listOf(0,2,4,6,8,10)) {}//это то же самое
 
 }
 
