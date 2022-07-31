@@ -1,16 +1,38 @@
 fun main() {
-    var expression = getOperandsFromString(getGata())
+    var expression = getOperandsFromString(getData())
     println(expression.toString())
 }
 
-fun getGata(): String {
-    var expression: String? = null
-//    while (expression != "q" || expression != "Q") {
-        println("enter an arithmetic expression then press 'enter': ")
-        expression = readLine()
-//    }
-    return expression ?: ""
+fun getData(): List<String> {
+    var string: String? = null
+    println("enter an arithmetic expression then press 'enter': ")
+    string = readLine()
+    string = string ?: ""
+    string = string.replace("\\s+".toRegex(), "") //all spaces removed
+    val operands = mutableListOf<String>()
+    if (string.isNotBlank()) {
+        val regex = Regex("""-?\d+(\.\d+)?[*/\-+]?""")
+        regex.findAll(string).forEach {
+            operands.add(it.value)
+        }
+    }
+    return operands
 }
+
+fun action(operands: List<String>) {
+    operands.forEachIndexed() { index, element ->
+        while (index < operands.size - 1) {
+            when (element.takeLast(1)) {
+                "*" -> {
+                    val num1 = element.dropLast(1).toDouble()
+                    val num2 = element[index + 1].
+                }
+            }
+        }
+
+
+}
+
 
 data class Expression(var x: Number = 0, var y: Number = 0, var action: String = "")
 
@@ -19,14 +41,7 @@ fun getOperandsFromString(string: String): Expression {
     var operand1: String = ""
     var operand2: String = ""
     var action: String = ""
-    val operands = mutableListOf<String>()
-    if (string.isNotBlank()) {
-        val regex = Regex("""-?\d+(\.\d+)?""")
-        regex.findAll(string).forEach {
-//            print(it.value)
-            operands.add(it.value)
-        }
-        println(operands)
+
 
 //        var (operand1, action, operand2) = string.split(" ")
 //
