@@ -2,7 +2,6 @@ import androidx.core.text.isDigitsOnly
 
 fun main() {
     action(getData())
-//    println(expression.toString())
 }
 
 fun getData(): List<String> {
