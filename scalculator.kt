@@ -19,7 +19,21 @@ fun getData(): List<String> {
     return operands
 }
 
-fun action(operands: List<String>) {
+fun action(ops: List<String>) {
+    var operands = ops.toMutableList()
+    var i: Int = 0
+    while (i < (operands.size - 1)) {
+        when (operands[i].takeLast(1)) {
+            "*" -> {
+                val num1 = operands[i].dropLast(1).toDouble()
+                val num2 = operands[i + 1].dropLast(1).toDouble()
+                val act2 = operands[i + 1].takeLast(1)
+                operands[i + 1] = (num1 * num2).toString() + act2
+                operands.removeAt(i)
+
+            }
+        }
+    }
     operands.forEachIndexed() { index, element ->
         while (index < operands.size - 1) {
             when (element.takeLast(1)) {
