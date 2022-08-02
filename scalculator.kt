@@ -1,15 +1,12 @@
-import androidx.core.text.isDigitsOnly
-
 fun main() {
-    action(getData())
+    result(getData())
 }
 
 fun getData(): List<String> {
-    var string: String? = null
     println("enter an arithmetic expression then press 'enter': ")
-    string = readLine()
+    var string: String? = readLine()
     string = string ?: ""
-    string = string.replace("\\s+".toRegex(), "") //all spaces removed
+    string = string.replace("""\s+""".toRegex(), "") //all spaces are removed
     val operands = mutableListOf<String>()
     if (string.isNotBlank()) {
         val regex = Regex("""-?\d+(\.\d+)?[*/\-+]?""")
@@ -17,62 +14,81 @@ fun getData(): List<String> {
             operands.add(it.value)
         }
     }
-//    operands.last().takeLast(1).
+    operands[operands.size - 1] = operands.last().replace("""[*/\-+]?$""".toRegex(), "")
+    //removing the last symbol of the last operand if action
     return operands
 }
 
-fun action(ops: List<String>) {
-    var operands = ops.toMutableList()
-    var i: Int = 0
+fun result(ops: List<String>) {
+    val operands = ops.toMutableList()
+    var i = 0
     var size = operands.size
+    //first multiply and divide
     while (i < (size - 1)) {
-        println(operands)
+        val num1 = operands[i].dropLast(1).toDouble()
+        var num2: Double
+        var act2: String
+        if (i == size - 2) {
+            num2 = operands[i + 1].toDouble()
+            act2 = ""
+        } else {
+            num2 = operands[i + 1].dropLast(1).toDouble()
+            act2 = operands[i + 1].takeLast(1)
+        }
         when (operands[i].takeLast(1)) {
             "*" -> {
-                val num1 = operands[i].dropLast(1).toDouble()
-//                if (i == size - 2) {
-//                    val num2 = operands[i + 1].dropLast(1).toDouble()
-//                }
-                val num2 = operands[i + 1].dropLast(1).toDouble()
-                val act2 = if (i == size - 2) "" else operands[i + 1].takeLast(1)
                 operands[i + 1] = (num1 * num2).toString() + act2
                 operands.removeAt(i)
                 --size
                 --i
             }
             "/" -> {
-                val num1 = operands[i].dropLast(1).toDouble()
-                val num2 = operands[i + 1].dropLast(1).toDouble()
-                val act2 = if (i == size - 2) "" else operands[i + 1].takeLast(1)
                 operands[i + 1] = (num1 / num2).toString() + act2
                 operands.removeAt(i)
                 --size
                 --i
             }
-//            else ->
         }
         ++i
     }
     println(ops)
     println(operands)
+    //then add and subtract
+    size = operands.size
+    i = 0
+    while (i < (size - 1)) {
+        val num1 = operands[i].dropLast(1).toDouble()
+        var num2: Double
+        var act2: String
+        if (i == size - 2) {
+            num2 = operands[i + 1].toDouble()
+            act2 = ""
+        } else {
+            num2 = operands[i + 1].dropLast(1).toDouble()
+            act2 = operands[i + 1].takeLast(1)
+        }
+        when (operands[i].takeLast(1)) {
+            "+" -> {
+                operands[i + 1] = (num1 + num2).toString() + act2
+                operands.removeAt(i)
+                --size
+                --i
+            }
+            "-" -> {
+                operands[i + 1] = (num1 - num2).toString() + act2
+                operands.removeAt(i)
+                --size
+                --i
+            }
+        }
+        ++i
+    }
+    println(operands)
 }
 
-
-//data class Expression(var x: Number = 0, var y: Number = 0, var action: String = "")
-
-//fun getOperandsFromString(string: String): Expression {
-//    var expression = Expression()
-//    var operand1: String = ""
-//    var operand2: String = ""
-//    var action: String = ""
-//
-//
-////        var (operand1, action, operand2) = string.split(" ")
-////
 ////        if (action in "+-*/") {
 ////            expression.action = action
 ////        }
-////
 ////        if (operand1.contains('.')) {
 ////            expression.x = operand1.toDouble()
 ////        } else {
