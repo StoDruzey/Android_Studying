@@ -85,21 +85,3 @@ fun result(ops: List<String>) {
     }
     println(operands)
 }
-
-////        if (action in "+-*/") {
-////            expression.action = action
-////        }
-////        if (operand1.contains('.')) {
-////            expression.x = operand1.toDouble()
-////        } else {
-////            expression.x = operand1.toInt()
-////        }
-////
-////        if (operand2.contains('.')) {
-////            expression.y = operand2.toDouble()
-////        } else {
-////            expression.y = operand2.toInt()
-////        }
-//    }
-//    return expression
-//}
