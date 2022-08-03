@@ -3,7 +3,7 @@ fun main() {
 }
 
 fun getData(): List<String> {
-    println("enter an arithmetic expression then press 'enter': ")
+    println("enter an arithmetic expression without brackets then press 'enter': ")
     var string: String? = readLine()
     string = string ?: ""
     string = string.replace("""\s+""".toRegex(), "") //all spaces are removed
@@ -43,6 +43,10 @@ fun result(ops: List<String>) {
                 --i
             }
             "/" -> {
+                if (num2 == 0.0) {
+                    println("error: divide by zero")
+                    return
+                }
                 operands[i + 1] = (num1 / num2).toString() + act2
                 operands.removeAt(i)
                 --size
@@ -51,8 +55,6 @@ fun result(ops: List<String>) {
         }
         ++i
     }
-    println(ops)
-    println(operands)
     //then add and subtract
     size = operands.size
     i = 0
@@ -83,5 +85,6 @@ fun result(ops: List<String>) {
         }
         ++i
     }
-    println(operands)
+    ops.forEach { print(it) }
+    println(" = ${operands[0].toString()}")
 }
