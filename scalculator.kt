@@ -85,6 +85,5 @@ fun result(ops: List<String>) {
         }
         ++i
     }
-    ops.forEach { print(it) }
-    println(" = ${operands[0].toString()}")
+
 }
